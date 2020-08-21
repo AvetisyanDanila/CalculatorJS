@@ -59,7 +59,7 @@
       border-radius: 3px;
       -webkit-transition: 0.3s;
       transition: 0.3s; }
-      @media screen and (min-width: 1024px) {
+      @media screen and (min-width: 1025px) {
         .calculator-operations__item:hover {
           -webkit-filter: brightness(80%);
                   filter: brightness(80%); } }

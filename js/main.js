@@ -10,6 +10,17 @@ function clickAnimation(elem) {
     }, 300);
 }
 
+// Запрет ввода всех символом, кроме цифр
+function inputProhibition() {
+    if ((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 191 || event.keyCode == 106 || event.keyCode == 187 || event.keyCode == 189) {
+        console.log(event.key);
+    } else {
+        return false;
+    }
+}
+
+calculatorInput.onkeydown = inputProhibition;
+
 calculatorOperationsItem.forEach(element => {
     element.addEventListener("click", () => {
         // Чтобы можно было вводить числа до 1(например 0.1)
@@ -217,3 +228,11 @@ calculatorOperationsItem.forEach(element => {
         clickAnimation(element);
     });
 });
+
+// Отключение появления клавиатуры на телефонах и планшетах
+function disableMobileKeyboard() {
+    calculatorInput.setAttribute('readonly', 'true');
+}
+if (document.documentElement.clientWidth <= 1024) {
+    disableMobileKeyboard();
+}
