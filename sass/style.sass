@@ -1,0 +1,67 @@
+@import 'fonts.sass'
+@import 'colors.sass'
+
+.calculator
+    width: 100%
+    min-height: 100vh
+    display: flex
+    align-items: center
+    font-family: "Averta"
+    &__body
+        box-shadow: 0 0 10px #6d6d6d
+        max-width: 290px
+        border-radius: 5px
+        margin: 0 auto
+    &__top
+        background-color: $blue
+        padding: 10px
+        width: 100%
+        border-top-left-radius: 5px
+        border-top-right-radius: 5px
+    &__input
+        width: 100%
+        background-color: transparent
+        border: none
+        height: 70px
+        text-align: right
+        font-size: 56px
+        line-height: 56px
+        color: #fff
+    &-operations
+        padding: 30px 10px 10px 10px
+        &__line
+            display: flex
+            justify-content: space-between
+            margin-bottom: 10px
+            &:last-child
+                margin-bottom: 0
+        &__item
+            border: none
+            background-color: $beige
+            width: 60px
+            height: 60px
+            padding: 0
+            font-size: 24px
+            color: $gray
+            border-radius: 3px
+            transition: 0.3s
+            &:hover
+                @media screen and (min-width: 1024px)
+                    filter: brightness(80%)
+            &.lightblue
+                background-color: $lightblue
+                color: $blue
+            &.AC
+                width: 74%
+            &.equally
+                width: 48%
+                background: linear-gradient(to top right, $lightblue 1%, $blue 70%)
+                color: #fff
+
+@keyframes click
+    0%
+        transform: scale(1)
+    50%
+        transform: scale(0.90)
+    100% 
+        transform: scale(1)
