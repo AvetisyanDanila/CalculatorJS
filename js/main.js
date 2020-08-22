@@ -10,17 +10,6 @@ function clickAnimation(elem) {
     }, 300);
 }
 
-// Запрет ввода всех символом, кроме цифр
-function inputProhibition() {
-    if ((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 191 || event.keyCode == 106 || event.keyCode == 187 || event.keyCode == 189) {
-        console.log(event.key);
-    } else {
-        return false;
-    }
-}
-
-calculatorInput.onkeydown = inputProhibition;
-
 calculatorOperationsItem.forEach(element => {
     element.addEventListener("click", () => {
         // Чтобы можно было вводить числа до 1(например 0.1)
@@ -43,11 +32,7 @@ calculatorOperationsItem.forEach(element => {
             switch (element.value) {
                 case '=':
                     output = eval(calculatorInput.value);
-                    if (output == 'Infinity') {
-                        calculatorInput.style.fontSize = '18px';
-                        output = 'Деление на ноль невозможно';
-                    }
-                    else if (output == '-Infinity') {
+                    if (output == 'Infinity' || output == '-Infinity') {
                         calculatorInput.style.fontSize = '18px';
                         output = 'Деление на ноль невозможно';
                     }
@@ -66,15 +51,15 @@ calculatorOperationsItem.forEach(element => {
                             calculatorInput.value = calculatorInput.value + '.';
                             break label;
                         }
-                        if (str[i] == '-' && str[str.length - 1] != '-' && str[str.length - 1] == '.') {
+                        else if (str[i] == '-' && str[str.length - 1] != '-' && str[str.length - 1] == '.') {
                             calculatorInput.value = calculatorInput.value + '.';
                             break label;
                         }
-                        if (str[i] == '*' && str[str.length - 1] != '*' && str[str.length - 1] == '.') {
+                        else if (str[i] == '*' && str[str.length - 1] != '*' && str[str.length - 1] == '.') {
                             calculatorInput.value = calculatorInput.value + '.';
                             break label;
                         }
-                        if (str[i] == '/' && str[str.length - 1] != '/' && str[str.length - 1] == '.') {
+                        else if (str[i] == '/' && str[str.length - 1] != '/' && str[str.length - 1] == '.') {
                             calculatorInput.value = calculatorInput.value + '.';
                             break label;
                         }
@@ -88,16 +73,6 @@ calculatorOperationsItem.forEach(element => {
                             calculatorInput.value = calculatorInput.value + '0.';
                             break label;
                         }
-                    }
-                    for (let i = 0; i < str.length; i++) {
-                        // если точка стоит и она не в конце, то не добавлять ей, чтобы не получилось 0.2.2
-                        if (str[i] == '.' && str[str.length - 1] != '.') {
-                            break label;
-                        }
-                        // если в конце строки стоит точка, не добавлять её снова 
-                        // else if (str[str.length - 1] == '.') {
-                        //     break label;
-                        // }
                     }
                     if (calculatorInput.value == '') {
                         calculatorInput.value = 0;
@@ -228,11 +203,3 @@ calculatorOperationsItem.forEach(element => {
         clickAnimation(element);
     });
 });
-
-// Отключение появления клавиатуры на телефонах и планшетах
-function disableMobileKeyboard() {
-    calculatorInput.setAttribute('readonly', 'true');
-}
-if (document.documentElement.clientWidth <= 1024) {
-    disableMobileKeyboard();
-}

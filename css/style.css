@@ -35,7 +35,8 @@
     text-align: right;
     font-size: 56px;
     line-height: 56px;
-    color: #fff; }
+    color: #fff;
+    cursor: default; }
   .calculator-operations {
     padding: 30px 10px 10px 10px; }
     .calculator-operations__line {
