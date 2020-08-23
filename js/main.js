@@ -203,3 +203,10 @@ calculatorOperationsItem.forEach(element => {
         clickAnimation(element);
     });
 });
+
+// Стереть последний элемент
+document.onkeydown = (event) => {
+    if (event.keyCode == 8) {
+        calculatorInput.value = calculatorInput.value.slice(0, -1);
+    }
+};
